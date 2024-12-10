@@ -16,4 +16,4 @@ services:
         context: .
         dockerfile: supply_department/Dockerfile
       ports:
-        - 8000:8000
+        - 8822:8000
