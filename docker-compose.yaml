@@ -1,0 +1,19 @@
+services:
+  database.drobot-vlad.com:
+    image: postgres:16.1
+    environment:
+      POSTGRES_USER: vlad
+      POSTGRES_PASSWORD: drobot
+      POSTGRES_DB: supply_department
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - type: bind
+        source: ./supply_department_db_data
+        target: /var/lib/postgresql/data
+
+  djangoapp.drobot-vlad.com:
+      build:
+        context: .
+        dockerfile: supply_department/Dockerfile
+      ports:
+        - 8000:8000
