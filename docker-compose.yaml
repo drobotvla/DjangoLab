@@ -17,3 +17,25 @@ services:
         dockerfile: supply_department/Dockerfile
       ports:
         - 8822:8000
+
+  db_manipulation.env.drobot-vlad.com:
+    build:
+      context: .
+      dockerfile: db_manipulation/Dockerfile
+    volumes:
+      - ./db_manipulation/scripts:/db_manipulation
+    depends_on:
+      database.drobot-vlad.com:
+        condition: service_started
+    entrypoint: ["echo", "Control panel ready!"]
+
+  pgadmin:
+    image: dpage/pgadmin4:8.13.0
+    container_name: pgadmin
+    ports:
+      - 8811:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: drobotvlad@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: drobot
+    volumes:
+      - ./pgadmin_data:/var/lib/pgadmin

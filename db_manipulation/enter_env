@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+docker compose run -w /db_manipulation --entrypoint bash db_manipulation.env.drobot-vlad.com
