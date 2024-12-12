@@ -15,6 +15,9 @@ services:
       build:
         context: .
         dockerfile: supply_department/Dockerfile
+      depends_on:
+        database.drobot-vlad.com:
+          condition: service_started
       ports:
         - 8822:8000
 
